@@ -1,0 +1,8 @@
+#!/bin/sh
+
+#env
+
+#H=`curl http://lavapit.lavajumper.com:9950/chain/Sexcoin/q/getblockcount`
+curl http://lavapit.lavajumper.com:9950/chain/Sexcoin/q/getblockcount
+#echo $H
+

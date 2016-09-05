@@ -1,0 +1,9 @@
+#!/bin/sh
+
+#H=`curl http://lavapit.lavajumper.com:9950/chain/Sexcoin/q/getblockcount`
+while [ 1 ];do
+	curl http://blockexplorer.lavajumper.com/q/totalbc
+	echo
+	sleep 45
+done
+

@@ -1,0 +1,40 @@
+body{
+    background-color: #aaa;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 14px;
+}
+
+h1{
+    font-size: 45px;
+}
+
+.content{
+    background-color: white;
+    width: 85%;
+    font-family: Tahoma, Helvetica, sans-serif;
+    font-size: 14px;
+    margin: 0px auto;
+    padding: 15px;
+    border: 5px solid #777;
+    border-radius: 18px;
+}
+
+td, th {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 12px;
+    margin: 0;
+    padding: 0 1ex;
+}
+td {
+    border-width: 1px;
+    border-style: solid;
+}
+table {
+    margin: 0px auto;
+    width: 98%;
+    border-spacing: 0;
+}
+.shortlink {
+    font-size: smaller;
+}
+
