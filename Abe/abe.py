@@ -2021,6 +2021,7 @@ class Abe:
             body+=['<tr><td>',rank,'</td><td><a href="',page['dotdot'],'address/',address,'">',address,'</a></td><td>',balance,'</td></tr>\n']
             rank += 1
         body+=['</table></div>']
+        abe.update_statpanel(page, chain)
 
     def handle_download(abe, page):
         name = abe.args.download_name
