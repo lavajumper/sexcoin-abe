@@ -2010,7 +2010,7 @@ class Abe:
             
         body +=['<div style="width: 60%; margin-left: auto; margin-right: auto">']
         body +=['<h3>Updated ',date[0],'</h3>\n']
-        body +=['<table><tr><th>Rank</th><th>Address</th><th>Balance</th></tr>\n']
+        body +=['<table class="table table-hover"><tr><th>Rank</th><th>Address</th><th>Balance</th></tr>\n']
         rows = abe.store.selectall("""
             SELECT address, balance
               FROM richlist
