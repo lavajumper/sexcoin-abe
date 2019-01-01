@@ -1648,6 +1648,8 @@ store._ddl['txout_approx'],
             if row is None:
                 return None
             height, prev_id, search_id = row
+            if height is None:
+                store.log.error("BlockID=%s ", block_id)
             block = store.cache_block(
                 block_id, int(height),
                 None if prev_id is None else int(prev_id),

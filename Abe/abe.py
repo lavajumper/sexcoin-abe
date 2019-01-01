@@ -302,7 +302,7 @@ class Abe:
         body = page['body']
         body += [
             abe.search_form(page),
-            '<table>\n',
+            '<table class="table table-hover>\n',
             '<tr><th>Currency</th><th>Code</th><th>Block</th><th>Time</th>',
             '<th>Started</th><th>Age (days)</th><th>Coins Created</th>',
             '<th>Avg Coin Age</th><th>',
@@ -451,7 +451,7 @@ class Abe:
             return
 
         rows = abe.store.selectall("""
-            SELECT b.block_hash, b.block_height, b.block_ntime, b.block_num_tx,
+            SELECT b.block_hash, b.block_height, b.block_version, b.block_ntime, b.block_num_tx,
                    b.block_nbits, b.block_value_out,
                    b.block_total_seconds, b.block_satoshi_seconds,
                    b.block_total_satoshis, b.block_ss_destroyed,
@@ -496,7 +496,7 @@ class Abe:
         extra = False
         #extra = True
         body += ['<p>', nav, '</p>\n',
-                 '<table class="table table-hover"><tr><th>Block</th><th>Approx. Time</th>',
+                 '<table class="table table-hover"><tr><th>Block</th><th>V.</th><th>Approx. Time</th>',
                  '<th>Transactions</th><th>Value Out</th>',
                  '<th>Difficulty</th><th>Outstanding</th>',
                  '<th>Average Age</th><th>Chain Age</th>',
@@ -508,8 +508,9 @@ class Abe:
                  if extra else '',
                  '</tr>\n']
         for row in rows:
-            (hash, height, nTime, num_tx, nBits, value_out,
+            (hash, height, bversion, nTime, num_tx, nBits, value_out,
              seconds, ss, satoshis, destroyed, total_ss) = row
+            bversion=int(bversion)
             nTime = int(nTime)
             value_out = int(value_out)
             seconds = int(seconds)
@@ -531,7 +532,8 @@ class Abe:
             body += [
                 '<tr><td><a href="', page['dotdot'], 'block/',
                 abe.store.hashout_hex(hash),
-                '">', height, '</a>'
+                '">', height, '</a>',
+                '</td><td>', bversion,
                 '</td><td>', format_time(int(nTime)),
                 '</td><td>', num_tx,
                 '</td><td>', format_satoshis(value_out, chain),
@@ -1173,8 +1175,8 @@ class Abe:
         abe.update_statpanel(page,chain)
         
     def richlist_link(abe,page):
-        return [
-            '<p><a href="richlist">Richlist</a></p>' ]
+        return []
+            #'<p><a href="richlist">Richlist</a></p>' ]
             
     def search_form(abe, page):
         q = (page['params'].get('q') or [''])[0]
@@ -1186,7 +1188,7 @@ class Abe:
             '<button type="submit">Search</button>\n'
             '<br />Address or hash search requires at least the first ',
             HASH_PREFIX_MIN, ' characters.</p></form>\n'
-            '<p><a href="/richlist">Richlist</a></p>\n']
+            ]
 
     def handle_search(abe, page):
         page['title'] = 'Search'
